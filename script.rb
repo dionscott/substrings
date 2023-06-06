@@ -5,11 +5,15 @@ dictionary = ["below","down","go","going","horn","how","howdy",
 #returns a hash that shows how many dictionary words are in the string
 
 def substrings(string, dictionary)
-    dictionary.filter_map do |word| 
-        if string.include?(word)
-            p word
+    dictionary.reduce(Hash.new(0)) do |word, value| 
+        # p word
+        # p key
+        # p value
+        if string.include?(value)
+            word[value] += 1
         end
+        word
     end
 end
 
-substrings("below", dictionary)
+p substrings("below", dictionary)
