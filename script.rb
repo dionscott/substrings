@@ -5,14 +5,19 @@ dictionary = ["below","down","go","going","horn","how","howdy",
 #returns a hash that shows how many dictionary words are in the string
 
 def substrings(string, dictionary)
-    dictionary.reduce(Hash.new(0)) do |word, value| 
-        downcase_string = string.downcase.split(" ")
-        simplified_string = downcase_string.join(" ")
-        if simplified_string.include?(value)
-            word[value] += 1
-        end
-        word
-    end
+  matches = Hash.new(0)
+  # checks the dictionary to find any matches in the string
+  matches = find_matches(string, dictionary, matches)
 end
 
-p substrings("Howdy, partner! Look it's down below!", dictionary)
+def find_matches(string, dictionary, matches)
+  dictionary.reduce(Hash.new(0)) do |collection, word|
+    if string.include?(word)
+      collection[word] += 1
+    end
+    collection
+  end
+end
+
+
+p substrings("below", dictionary)
