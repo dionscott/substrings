@@ -6,12 +6,14 @@ dictionary = ["below","down","go","going","horn","how","howdy",
 
 def substrings(string, dictionary)
   matches = Hash.new(0)
-  # checks the dictionary to find any matches in the string
-  matches = find_matches(string, dictionary, matches)
+  seperated_string = string.downcase.split(" ")
+  seperated_string.each { |string| find_matches(string, dictionary, matches) }
+  # checks the dictionary to find any matches in the string 
+  matches
 end
 
 def find_matches(string, dictionary, matches)
-  dictionary.reduce(Hash.new(0)) do |collection, word|
+  dictionary.reduce(matches) do |collection, word|
     if string.include?(word)
       collection[word] += 1
     end
@@ -20,4 +22,4 @@ def find_matches(string, dictionary, matches)
 end
 
 
-p substrings("below", dictionary)
+p substrings("Howdy partner, sit down! How's it going?", dictionary)
